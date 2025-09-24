@@ -1,0 +1,5 @@
+aws_region       = "us-east-1"
+cluster_name     = "my-nomad-cluster"
+ssh_key_name     = "your-aws-ssh-key-name"
+allowed_ssh_cidr = ["YOUR_PUBLIC_IP/32"]
+client_nodes     = 2

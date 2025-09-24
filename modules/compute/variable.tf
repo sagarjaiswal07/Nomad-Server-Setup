@@ -1,0 +1,10 @@
+variable "cluster_name" { type = string }
+variable "ssh_key_name" { type = string }
+variable "public_subnet_ids" { type = list(string) }
+variable "private_subnet_ids" { type = list(string) }
+variable "client_nodes_count" { type = number }
+variable "vpc_id" { type = string }
+variable "bastion_sg_id" { type = string }
+variable "nomad_server_sg_id" { type = string }
+variable "nomad_client_sg_id" { type = string }
+variable "alb_sg_id" { type = string }
