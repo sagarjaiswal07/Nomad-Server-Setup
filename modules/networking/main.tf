@@ -23,7 +23,7 @@ resource "aws_subnet" "public" {
 resource "aws_subnet" "private" {
   count             = 2
   vpc_id            = aws_vpc.main.id
-  # CORRECTED: Use a valid IP address calculation in a different range. e.g., 10.0.101.0/24, 10.0.102.0/24
+  
   cidr_block        = "10.0.10${count.index + 1}.0/24"
   availability_zone = data.aws_availability_zones.available.names[count.index]
   tags              = { Name = "${var.cluster_name}-private-subnet-${count.index + 1}" }
