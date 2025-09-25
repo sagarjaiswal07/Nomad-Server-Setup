@@ -1,6 +1,4 @@
-# -----------------------------------------------------------------------------
-# SECURITY GROUP DEFINITIONS (EMPTY SHELLS)
-# -----------------------------------------------------------------------------
+
 resource "aws_security_group" "bastion" {
   name        = "${var.cluster_name}-bastion-sg"
   description = "Bastion Host Security Group"
@@ -29,9 +27,7 @@ resource "aws_security_group" "alb" {
   tags        = { Name = "${var.cluster_name}-alb-sg" }
 }
 
-# =============================================================================
-# EGRESS RULES (Allow all outbound traffic for all groups)
-# =============================================================================
+
 resource "aws_security_group_rule" "bastion_egress" {
   type              = "egress"
   from_port         = 0
@@ -68,10 +64,7 @@ resource "aws_security_group_rule" "alb_egress" {
   security_group_id = aws_security_group.alb.id
 }
 
-# =============================================================================
-# INGRESS RULES (Defined without creating cycles)
-# =============================================================================
-# --- ALB Ingress ---
+
 resource "aws_security_group_rule" "alb_ingress_http" {
   type              = "ingress"
   description       = "Allow HTTP from anywhere"
@@ -82,7 +75,7 @@ resource "aws_security_group_rule" "alb_ingress_http" {
   security_group_id = aws_security_group.alb.id
 }
 
-# --- Bastion Ingress ---
+
 resource "aws_security_group_rule" "bastion_ingress_ssh" {
   type              = "ingress"
   description       = "Allow SSH from users IP"
@@ -93,7 +86,7 @@ resource "aws_security_group_rule" "bastion_ingress_ssh" {
   security_group_id = aws_security_group.bastion.id
 }
 
-# --- Nomad Server Ingress ---
+
 resource "aws_security_group_rule" "server_ingress_ssh_from_bastion" {
   type                     = "ingress"
   description              = "Allow SSH from Bastion"
@@ -124,7 +117,7 @@ resource "aws_security_group_rule" "server_ingress_nomad_from_vpc" {
   security_group_id = aws_security_group.nomad_server.id
 }
 
-# --- Nomad Client Ingress ---
+
 resource "aws_security_group_rule" "client_ingress_ssh_from_bastion" {
   type                     = "ingress"
   description              = "Allow SSH from Bastion"
