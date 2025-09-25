@@ -62,7 +62,7 @@ resource "aws_launch_template" "nomad_client" {
   key_name               = var.ssh_key_name
   vpc_security_group_ids = [var.nomad_client_sg_id]
 
-  depends_on = [aws_instance.nomad_server] # Ensures server IP is available
+  depends_on = [aws_instance.nomad_server] 
 
   user_data = base64encode(<<-EOF
               #!/bin/bash
