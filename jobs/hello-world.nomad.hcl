@@ -9,18 +9,17 @@ job "final-app" {
 
     network {
       port "http" {
-        static = 8080 # The ALB is configured to check this port
+        static = 8080 
       }
     }
 
-    # This service block makes the job visible to Consul if you add it later,
-    # but most importantly, it's where the health check is defined.
+    
+   
     service {
       name = "final-app-web"
       port = "http"
 
-      # This check is used by Nomad itself. If the task fails this,
-      # Nomad will restart it.
+     
       check {
         type     = "http"
         path     = "/"
