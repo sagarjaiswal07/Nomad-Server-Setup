@@ -45,8 +45,8 @@ job "final-app" {
       }
 
       resources {
-        cpu    = 100 # MHz
-        memory = 64  # MB
+        cpu    = 100 
+        memory = 64 
       }
     }
   }
