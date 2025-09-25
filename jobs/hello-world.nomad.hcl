@@ -35,9 +35,7 @@ job "final-app" {
         image = "hashicorp/http-echo:latest"
         ports = ["http"]
 
-        # Arguments for the http-echo server.
-        # It will listen on port 8080 inside the container and
-        # respond with the specified text.
+       
         args = [
           "-listen",
           ":8080",
